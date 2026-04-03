@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Huiswerkbegeleiding Groep 7 – Slimmer Leren</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --geel: #FFD166;
+      --groen: #06D6A0;
+      --blauw: #118AB2;
+      --donker: #1A1A2E;
+      --wit: #FEFCF3;
+      --lichtgrijs: #F4F1E8;
+      --tekst: #2D2D2D;
+      --sans: 'DM Sans', sans-serif;
+      --serif: 'Fraunces', serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background-color: var(--wit);
+      color: var(--tekst);
+      line-height: 1.65;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(254, 252, 243, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--donker);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 2.5rem;
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--donker);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--blauw); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--donker);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--blauw); }
+
+    .nav-cta {
+      background: var(--donker);
+      color: var(--geel) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--blauw) !important; color: #fff !important; }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      padding-top: 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 3rem;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-tekst {
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--geel);
+      color: var(--donker);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      border: 1.5px solid var(--donker);
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: 1.15;
+      color: var(--donker);
+      margin-bottom: 1.2rem;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--blauw);
+      text-decoration: underline;
+      text-decoration-color: var(--geel);
+      text-decoration-thickness: 4px;
+      text-underline-offset: 6px;
+    }
+
+    .hero-tekst p {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 46ch;
+      margin-bottom: 2rem;
+    }
+
+    .btn-groep {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.8rem;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 2px solid var(--donker);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primair {
+      background: var(--donker);
+      color: var(--geel);
+    }
+
+    .btn-primair:hover { background: var(--blauw); border-color: var(--blauw); color: #fff; }
+
+    .btn-secundair {
+      background: transparent;
+      color: var(--donker);
+    }
+
+    .btn-secundair:hover { background: var(--donker); color: var(--wit); }
+
+    .hero-beeld {
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-kaart {
+      background: var(--donker);
+      border-radius: 24px;
+      padding: 2.5rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-kaart::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: var(--geel);
+      border-radius: 50%;
+      opacity: 0.15;
+    }
+
+    .kaart-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 1.2rem;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stat-getal {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      color: var(--geel);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.65); }
+
+    .emoji-groot { font-size: 3rem; margin-bottom: 1rem; display: block; }
+
+    /* ── SECTIES ALGEMEEN ── */
+    section {
+      padding: 5rem 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sectie-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--blauw);
+      margin-bottom: 0.6rem;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--donker);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .sectie-intro {
+      font-size: 1.05rem;
+      color: #666;
+      max-width: 55ch;
+      margin-bottom: 3rem;
+    }
+
+    /* ── VAKKEN ── */
+    #vakken { background: var(--lichtgrijs); max-width: 100%; }
+    #vakken > .inner { max-width: 1200px; margin: 0 auto; padding: 5rem 2.5rem; }
+
+    .vakken-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .vak-kaart {
+      background: white;
+      border: 2px solid var(--donker);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vak-kaart:hover {
+      transform: translateY(-4px);
+      box-shadow: 6px 6px 0 var(--donker);
+    }
+
+    .vak-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .vak-kaart h3 {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      color: var(--donker);
+      margin-bottom: 0.5rem;
+    }
+
+    .vak-kaart p { font-size: 0.9rem; color: #666; }
+
+    .vak-tag {
+      position: absolute;
+      top: 1.2rem; right: 1.2rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.25rem 0.7rem;
+      border-radius: 100px;
+    }
+
+    .tag-geel { background: var(--geel); color: var(--donker); }
+    .tag-groen { background: var(--groen); color: var(--donker); }
+    .tag-blauw { background: var(--blauw); color: white; }
+
+    /* ── WERKWIJZE ── */
+    .stappen {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      counter-reset: stap;
+    }
+
+    .stap {
+      counter-increment: stap;
+      position: relative;
+      padding-top: 1rem;
+    }
+
+    .stap::before {
+      content: counter(stap);
+      font-family: var(--serif);
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--geel);
+      -webkit-text-stroke: 2px var(--donker);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stap h3 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--donker);
+    }
+
+    .stap p { font-size: 0.9rem; color: #666; }
+
+    /* ── OVER ONS ── */
+    #over { background: var(--donker); max-width: 100%; color: white; }
+    #over > .inner { max-width: 1200px; margin: 0 auto; padding: 5rem 2.5rem; }
+    #over h2 { color: white; }
+    #over .sectie-label { color: var(--groen); }
+    #over .sectie-intro { color: rgba(255,255,255,0.65); }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .team-lid {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 1.8rem;
+      text-align: center;
+      transition: background 0.2s;
+    }
+
+    .team-lid:hover { background: rgba(255,255,255,0.11); }
+
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 1rem;
+      border: 3px solid rgba(255,255,255,0.15);
+    }
+
+    .team-lid h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .team-lid p { font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+
+    .over-waarden {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .waarde {
+      background: rgba(255,255,255,0.05);
+      border-radius: 14px;
+      padding: 1.2rem;
+      border-left: 4px solid var(--geel);
+    }
+
+    .waarde span { font-size: 1.5rem; display: block; margin-bottom: 0.4rem; }
+    .waarde strong { font-size: 0.95rem; display: block; margin-bottom: 0.25rem; }
+    .waarde p { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+
+    /* ── CONTACT ── */
+    #contact { max-width: 800px; }
+
+    .formulier {
+      background: var(--lichtgrijs);
+      border: 2px solid var(--donker);
+      border-radius: 24px;
+      padding: 3rem;
+    }
+
+    .veld-groep {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .veld {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .veld label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--donker);
+    }
+
+    .veld input,
+    .veld select,
+    .veld textarea {
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--donker);
+      border-radius: 10px;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      background: white;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      width: 100%;
+    }
+
+    .veld input:focus,
+    .veld select:focus,
+    .veld textarea:focus {
+      border-color: var(--blauw);
+      box-shadow: 0 0 0 3px rgba(17, 138, 178, 0.15);
+    }
+
+    .veld-vol { grid-column: 1 / -1; }
+
+    .veld textarea { resize: vertical; min-height: 120px; }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .form-note { font-size: 0.82rem; color: #888; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--donker);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+      border-top: 2px solid rgba(255,255,255,0.07);
+    }
+
+    footer strong { color: white; }
+
+    /* ── ANIMATIES ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MOBIEL ── */
+    @media (max-width: 768px) {
+      #home { grid-template-columns: 1fr; padding-top: 6rem; }
+      .hero-beeld { order: -1; }
+      nav { padding: 0.8rem 1.2rem; }
+      .nav-links { display: none; }
+      .veld-groep { grid-template-columns: 1fr; }
+      section { padding: 3.5rem 1.2rem; }
+    }
+
+    /* ── MELDING NA SUBMIT ── */
+    .melding {
+      display: none;
+      background: var(--groen);
+      color: var(--donker);
+      font-weight: 600;
+      padding: 0.8rem 1.4rem;
+      border-radius: 10px;
+      border: 2px solid var(--donker);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#home">Slimmer<span>Leren</span></a>
+  <ul class="nav-links">
+    <li><a href="#vakken">Vakken</a></li>
+    <li><a href="#werkwijze">Werkwijze</a></li>
+    <li><a href="#over">Over ons</a></li>
+    <li><a href="#contact" class="nav-cta">Aanmelden</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="home">
+  <div class="hero-tekst">
+    <span class="hero-badge">🎒 Huiswerkbegeleiding Groep 7</span>
+    <h1>Samen werken aan een <em>sterke</em> basisschoolklas</h1>
+    <p>Wij helpen kinderen in groep 7 met rekenen, taal, topografie en woordenschat — op een manier die past bij hun tempo en aanpak.</p>
+    <div class="btn-groep">
+      <a href="#contact" class="btn btn-primair">Aanmelden ✏️</a>
+      <a href="#werkwijze" class="btn btn-secundair">Hoe werkt het?</a>
+    </div>
+  </div>
+  <div class="hero-beeld">
+    <div class="hero-kaart">
+      <span class="emoji-groot">📚</span>
+      <p style="color:rgba(255,255,255,0.7); font-size:0.9rem;">Elke week werken we samen aan:</p>
+      <div class="kaart-stats">
+        <div class="stat">
+          <span class="stat-getal">4</span>
+          <span class="stat-label">Vakken per sessie</span>
+        </div>
+        <div class="stat">
+          <span class="stat-getal">90</span>
+          <span class="stat-label">Min. begeleiding</span>
+        </div>
+        <div class="stat">
+          <span class="stat-getal">6</span>
+          <span class="stat-label">Max. kinderen</span>
+        </div>
+        <div class="stat">
+          <span class="stat-getal">2×</span>
+          <span class="stat-label">Per week mogelijk</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VAKKEN -->
+<div id="vakken">
+  <div class="inner">
+    <p class="sectie-label">Wat behandelen we?</p>
+    <h2>De vakken van groep 7</h2>
+    <p class="sectie-intro">We richten ons op de vier kernvakken die kinderen het meest nodig hebben voor een goede overgang naar de middelbare school.</p>
+    <div class="vakken-grid">
+      <div class="vak-kaart">
+        <span class="vak-tag tag-geel">Cijfers</span>
+        <span class="vak-icon">🔢</span>
+        <h3>Rekenen</h3>
+        <p>Breuken, kommagetallen, verhoudingen, meten en verbanden. We oefenen stap voor stap met uitleg op maat.</p>
+      </div>
+      <div class="vak-kaart">
+        <span class="vak-tag tag-groen">Taal</span>
+        <span class="vak-icon">✍️</span>
+        <h3>Taal & Spelling</h3>
+        <p>Werkwoordspelling, zinsontleding, begrijpend lezen en schrijven. Duidelijke regels, veel oefening.</p>
+      </div>
+      <div class="vak-kaart">
+        <span class="vak-tag tag-blauw">Wereld</span>
+        <span class="vak-icon">🗺️</span>
+        <h3>Topografie</h3>
+        <p>Nederland en Europa uit je hoofd kennen. We leren met slimme trucjes en kaartherhalingen.</p>
+      </div>
+      <div class="vak-kaart">
+        <span class="vak-tag tag-geel">Woordjes</span>
+        <span class="vak-icon">💬</span>
+        <h3>Woordenschat</h3>
+        <p>Nieuwe woorden leren en begrijpen in context. Handig voor taal én voor begrijpend lezen.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WERKWIJZE -->
+<section id="werkwijze">
+  <p class="sectie-label">Hoe gaat het in zijn werk?</p>
+  <h2>Onze werkwijze</h2>
+  <p class="sectie-intro">Duidelijk, persoonlijk en effectief. In vier stappen van aanmelding tot resultaat.</p>
+  <div class="stappen">
+    <div class="stap">
+      <h3>Kennismaking</h3>
+      <p>We spreken kort met ouder en kind om te horen wat goed gaat en waar hulp welkom is. Geen toets, gewoon een gesprek.</p>
+    </div>
+    <div class="stap">
+      <h3>Persoonlijk plan</h3>
+      <p>Op basis van de kennismaking stellen we een aanpak op. Welke vakken? Welk tempo? Wat is het doel?</p>
+    </div>
+    <div class="stap">
+      <h3>Sessies starten</h3>
+      <p>Elke sessie is 90 minuten, in een kleine groep van maximaal 6 kinderen. Ruimte voor vragen en uitleg.</p>
+    </div>
+    <div class="stap">
+      <h3>Voortgang volgen</h3>
+      <p>Na elke maand een kort terugkoppelmoment met de ouders. Zo weten we of het plan nog klopt.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OVER ONS -->
+<div id="over">
+  <div class="inner">
+    <p class="sectie-label">Wie zijn wij?</p>
+    <h2>Enthousiaste begeleiders</h2>
+    <p class="sectie-intro">Ons team bestaat uit ervaren leerkrachten en studenten die weten hoe kinderen leren — en hoe je dat leuk maakt.</p>
+    <div class="team-grid">
+      <div class="team-lid">
+        <div class="avatar" style="background: rgba(255,209,102,0.15);">👩‍🏫</div>
+        <h3>Evelien de Vries</h3>
+        <p>Leerkracht basisonderwijs, 8 jaar ervaring</p>
+      </div>
+      <div class="team-lid">
+        <div class="avatar" style="background: rgba(6,214,160,0.15);">👨‍🎓</div>
+        <h3>Tijs Meerman</h3>
+        <p>Student Pabo, specialist rekenen</p>
+      </div>
+      <div class="team-lid">
+        <div class="avatar" style="background: rgba(17,138,178,0.15);">👩‍💻</div>
+        <h3>Sara Oomen</h3>
+        <p>Master Onderwijskunde, taal & lezen</p>
+      </div>
+    </div>
+    <div class="over-waarden">
+      <div class="waarde">
+        <span>🎯</span>
+        <strong>Persoonlijk tempo</strong>
+        <p>Geen kind is hetzelfde. Wij passen de uitleg aan.</p>
+      </div>
+      <div class="waarde">
+        <span>💡</span>
+        <strong>Begrijpen, niet stampen</strong>
+        <p>We leggen uit waarom iets werkt, niet alleen hoe.</p>
+      </div>
+      <div class="waarde">
+        <span>🤝</span>
+        <strong>Ouders erbij</strong>
+        <p>We houden ouders op de hoogte van de voortgang.</p>
+      </div>
+      <div class="waarde">
+        <span>😊</span>
+        <strong>Veilige sfeer</strong>
+        <p>Fouten maken mag. Vragen stellen ook.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact" style="max-width:800px;">
+  <p class="sectie-label">Interesse?</p>
+  <h2>Meld je kind aan</h2>
+  <p class="sectie-intro">Vul het formulier in en we nemen binnen twee werkdagen contact op voor een gratis kennismaking.</p>
+
+  <div class="formulier">
+    <div class="veld-groep">
+      <div class="veld">
+        <label for="naam-kind">Naam kind</label>
+        <input type="text" id="naam-kind" placeholder="Voornaam" />
+      </div>
+      <div class="veld">
+        <label for="naam-ouder">Naam ouder / verzorger</label>
+        <input type="text" id="naam-ouder" placeholder="Voornaam achternaam" />
+      </div>
+    </div>
+    <div class="veld-groep">
+      <div class="veld">
+        <label for="email">E-mailadres</label>
+        <input type="email" id="email" placeholder="naam@email.nl" />
+      </div>
+      <div class="veld">
+        <label for="telefoon">Telefoonnummer</label>
+        <input type="tel" id="telefoon" placeholder="06-12345678" />
+      </div>
+    </div>
+    <div class="veld-groep">
+      <div class="veld">
+        <label for="vakken">Welke vakken?</label>
+        <select id="vakken">
+          <option value="">Kies een optie</option>
+          <option>Rekenen</option>
+          <option>Taal & Spelling</option>
+          <option>Topografie</option>
+          <option>Meerdere vakken</option>
+        </select>
+      </div>
+      <div class="veld">
+        <label for="frequentie">Hoe vaak per week?</label>
+        <select id="frequentie">
+          <option value="">Kies een optie</option>
+          <option>1× per week</option>
+          <option>2× per week</option>
+          <option>Weet ik nog niet</option>
+        </select>
+      </div>
+    </div>
+    <div class="veld-groep">
+      <div class="veld veld-vol">
+        <label for="bericht">Aanvullende informatie (optioneel)</label>
+        <textarea id="bericht" placeholder="Vertel ons meer over waar je kind hulp bij nodig heeft..."></textarea>
+      </div>
+    </div>
+    <div class="form-footer">
+      <span class="form-note">🔒 Wij delen je gegevens nooit met derden.</span>
+      <div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+        <span class="melding" id="melding">✅ Aanmelding verstuurd!</span>
+        <button class="btn btn-primair" onclick="verstuurFormulier()">Aanmelding versturen →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>SlimmerLeren</strong> · Huiswerkbegeleiding Groep 7<br />
+  <span style="margin-top:0.3rem; display:block;">© 2025 – Gemaakt met ❤️ voor lerende kinderen</span>
+</footer>
+
+<script>
+  function verstuurFormulier() {
+    const naam = document.getElementById('naam-kind').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    if (!naam || !email) {
+      alert('Vul minimaal de naam van het kind en een e-mailadres in.');
+      return;
+    }
+
+    const melding = document.getElementById('melding');
+    melding.style.display = 'inline-block';
+
+    setTimeout(() => {
+      melding.style.display = 'none';
+    }, 4000);
+  }
+</script>
+
+</body>
+</html>
